@@ -161,19 +161,8 @@
           "PercentDamageReduction": 0
         },
         {
-          "deceleration": 800,
-          "maxSpeed": 500,
-          "name": "TopDownMovement",
-          "type": "TopDownMovementBehavior::TopDownMovementBehavior",
-          "acceleration": 700,
-          "allowDiagonals": true,
-          "angleOffset": 0,
-          "angularMaxSpeed": 180,
-          "customIsometryAngle": 30,
-          "ignoreDefaultControls": true,
-          "movementAngleOffset": 0,
-          "rotateObject": false,
-          "viewpoint": "TopDown"
+          "name": "StarShipMovement",
+          "type": "StarShip::StarShipMovement"
         },
         {
           "name": "Tween",
@@ -321,19 +310,8 @@
           "PercentDamageReduction": 0
         },
         {
-          "name": "TopDownMovement",
-          "type": "TopDownMovementBehavior::TopDownMovementBehavior",
-          "deceleration": 800,
-          "maxSpeed": 500,
-          "acceleration": 700,
-          "allowDiagonals": true,
-          "angleOffset": 0,
-          "angularMaxSpeed": 180,
-          "customIsometryAngle": 30,
-          "ignoreDefaultControls": true,
-          "movementAngleOffset": 0,
-          "rotateObject": false,
-          "viewpoint": "TopDown"
+          "name": "StarShipMovement",
+          "type": "StarShip::StarShipMovement"
         },
         {
           "name": "Tween",
@@ -671,11 +649,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateLeftKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player1Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"left\"",
+                ""
               ]
             }
           ]
@@ -696,11 +676,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateUpKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player1Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"up\"",
+                ""
               ]
             }
           ]
@@ -721,11 +703,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateDownKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player1Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"down\"",
+                ""
               ]
             }
           ]
@@ -746,11 +730,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateRightKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player1Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"right\"",
+                ""
               ]
             }
           ]
@@ -790,6 +776,16 @@
                 "Player1Ship.ProjectileSpeed",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "StarShip::StarShipMovement::Function"
+              },
+              "parameters": [
+                "Player1Ship",
+                "StarShipMovement",
+                ""
+              ]
             }
           ]
         },
@@ -821,11 +817,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateLeftKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player2Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"left\"",
+                ""
               ]
             }
           ]
@@ -846,11 +844,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateUpKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player2Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"up\"",
+                ""
               ]
             }
           ]
@@ -871,11 +871,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateDownKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player2Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"down\"",
+                ""
               ]
             }
           ]
@@ -896,11 +898,13 @@
           "actions": [
             {
               "type": {
-                "value": "TopDownMovementBehavior::SimulateRightKey"
+                "value": "StarShip::StarShipMovement::Move_Starship_Towards"
               },
               "parameters": [
                 "Player2Ship",
-                "TopDownMovement"
+                "StarShipMovement",
+                "\"right\"",
+                ""
               ]
             }
           ]
@@ -960,72 +964,112 @@
           "conditions": [
             {
               "type": {
-                "value": "PosX"
+                "value": "BuiltinCommonInstructions::And"
               },
-              "parameters": [
-                "Player1Ship",
-                ">=",
-                "Player2Ship.X()"
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "Health::Health::Health"
+                  },
+                  "parameters": [
+                    "Player1Ship",
+                    "Health",
+                    ">",
+                    "0",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Health::Health::Health"
+                  },
+                  "parameters": [
+                    "Player2Ship",
+                    "Health",
+                    ">",
+                    "0",
+                    ""
+                  ]
+                }
               ]
             }
           ],
-          "actions": [
+          "actions": [],
+          "events": [
             {
-              "type": {
-                "value": "FlippableCapability::FlippableBehavior::FlipX"
-              },
-              "parameters": [
-                "Player1Ship",
-                "Flippable",
-                "yes"
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "PosX"
+                  },
+                  "parameters": [
+                    "Player1Ship",
+                    ">=",
+                    "Player2Ship.X()"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "FlippableCapability::FlippableBehavior::FlipX"
+                  },
+                  "parameters": [
+                    "Player1Ship",
+                    "Flippable",
+                    "yes"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "FlippableCapability::FlippableBehavior::FlipX"
+                  },
+                  "parameters": [
+                    "Player2Ship",
+                    "Flippable",
+                    "yes"
+                  ]
+                }
               ]
             },
             {
-              "type": {
-                "value": "FlippableCapability::FlippableBehavior::FlipX"
-              },
-              "parameters": [
-                "Player2Ship",
-                "Flippable",
-                "yes"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": true,
-                "value": "PosX"
-              },
-              "parameters": [
-                "Player1Ship",
-                ">=",
-                "Player2Ship.X()"
-              ]
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "FlippableCapability::FlippableBehavior::FlipX"
-              },
-              "parameters": [
-                "Player1Ship",
-                "Flippable",
-                "no"
-              ]
-            },
-            {
-              "type": {
-                "value": "FlippableCapability::FlippableBehavior::FlipX"
-              },
-              "parameters": [
-                "Player2Ship",
-                "Flippable",
-                "no"
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "PosX"
+                  },
+                  "parameters": [
+                    "Player1Ship",
+                    ">=",
+                    "Player2Ship.X()"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "FlippableCapability::FlippableBehavior::FlipX"
+                  },
+                  "parameters": [
+                    "Player1Ship",
+                    "Flippable",
+                    "no"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "FlippableCapability::FlippableBehavior::FlipX"
+                  },
+                  "parameters": [
+                    "Player2Ship",
+                    "Flippable",
+                    "no"
+                  ]
+                }
               ]
             }
           ]
@@ -1575,12 +1619,13 @@
       "type": "ScalableCapability::ScalableBehavior"
     },
     {
-      "name": "Text",
-      "type": "TextContainerCapability::TextContainerBehavior"
+      "name": "StarShipMovement",
+      "type": "StarShip::StarShipMovement",
+      "Velocity": 10
     },
     {
-      "name": "TopDownMovement",
-      "type": "TopDownMovementBehavior::TopDownMovementBehavior"
+      "name": "Text",
+      "type": "TextContainerCapability::TextContainerBehavior"
     },
     {
       "name": "Tween",
