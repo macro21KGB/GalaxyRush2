@@ -152,6 +152,34 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Vitesse"
+                  },
+                  "parameters": [
+                    "Object",
+                    ">=",
+                    "MaxVelocity"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "AddForceAL"
+                  },
+                  "parameters": [
+                    "Object",
+                    "90",
+                    "-VelocityX",
+                    "0"
+                  ]
+                }
+              ]
             }
           ],
           "parameters": [
@@ -179,7 +207,7 @@
         {
           "fullName": "Stop the ship",
           "functionType": "Action",
-          "name": "Function",
+          "name": "Stop_StarShip",
           "sentence": "stop _PARAM0_",
           "events": [
             {
@@ -276,6 +304,260 @@
           "extraInformation": [],
           "hidden": true,
           "name": "DirectionY"
+        }
+      ],
+      "sharedPropertyDescriptors": []
+    },
+    {
+      "description": "let a sprite follow an object but it's constrained to the screen width and height, it's invisible if the object is not outside the screen",
+      "fullName": "Outside Screen Orbit",
+      "name": "OutsideScreenWarning",
+      "objectType": "Sprite",
+      "eventsFunctions": [
+        {
+          "fullName": "Follow object",
+          "functionType": "Action",
+          "name": "Follow",
+          "sentence": "_PARAM0_ follow _PARAM2_",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "MettreXY"
+                  },
+                  "parameters": [
+                    "Object",
+                    "=",
+                    "clamp(Target.PointX(\"center\"), padding, CameraWidth() - padding *2)",
+                    "=",
+                    "clamp(Target.PointY(\"center\"), padding, CameraHeight() - padding *2)"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "If target it's outside the screen make it appear\n"
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Or"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "value": "PosX"
+                      },
+                      "parameters": [
+                        "Target",
+                        "<",
+                        "0"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PosX"
+                      },
+                      "parameters": [
+                        "Target",
+                        ">",
+                        "SceneWindowWidth()"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Target",
+                        "<",
+                        "0"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "PosY"
+                      },
+                      "parameters": [
+                        "Target",
+                        ">",
+                        "SceneWindowHeight()"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "Object",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "RotateTowardPosition"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Target.PointX(\"Center\")",
+                    "Target.PointY(\"Center\")",
+                    "0",
+                    ""
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "StarShip::OutsideScreenWarning",
+              "type": "behavior"
+            },
+            {
+              "description": "Target",
+              "name": "Target",
+              "supplementaryInformation": "Sprite",
+              "type": "objectList"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "onCreated",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ChangePlan"
+                  },
+                  "parameters": [
+                    "Object",
+                    "=",
+                    "100"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "StarShip::OutsideScreenWarning::PropertyIs_icon_initially_visible"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "Object",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "StarShip::OutsideScreenWarning::PropertyIs_icon_initially_visible"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "Object"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "StarShip::OutsideScreenWarning",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "propertyDescriptors": [
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "always visible?",
+          "description": "",
+          "group": "",
+          "extraInformation": [],
+          "name": "Is_icon_initially_visible"
+        },
+        {
+          "value": "10",
+          "type": "Number",
+          "unit": "Dimensionless",
+          "label": "Add padding around the screen",
+          "description": "",
+          "group": "",
+          "extraInformation": [],
+          "name": "padding"
         }
       ],
       "sharedPropertyDescriptors": []

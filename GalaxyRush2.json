@@ -27,7 +27,7 @@
     "windowHeight": 1080,
     "latestCompilationDirectory": "",
     "maxFPS": 60,
-    "minFPS": 20,
+    "minFPS": 29,
     "verticalSync": false,
     "platformSpecificAssets": {},
     "loadingScreen": {
@@ -156,6 +156,24 @@
         "name": "Idle3",
         "smoothed": false,
         "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "assets/RedOutside.png",
+        "kind": "image",
+        "metadata": "{\"extension\":\".png\"}",
+        "name": "RedOutside",
+        "smoothed": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "assets/BlueOutside.png",
+        "kind": "image",
+        "metadata": "{\"extension\":\".png\"}",
+        "name": "BlueOutside",
+        "smoothed": false,
+        "userAdded": true
       }
     ],
     "resourceFolders": []

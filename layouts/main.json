@@ -45,8 +45,8 @@
       "name": "Player1Ship",
       "persistentUuid": "651a751b-f426-4767-8c07-6767efc0a4b8",
       "width": 0,
-      "x": 295,
-      "y": 462,
+      "x": 216,
+      "y": 407,
       "zOrder": 1,
       "numberProperties": [],
       "stringProperties": [],
@@ -80,6 +80,38 @@
       "x": 885,
       "y": 374,
       "zOrder": 3,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "keepRatio": true,
+      "layer": "",
+      "name": "RedOutsideIcon",
+      "persistentUuid": "c21dce89-579e-4d27-9170-2f6a45fdcecd",
+      "width": 0,
+      "x": 1958,
+      "y": 26,
+      "zOrder": 4,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "keepRatio": true,
+      "layer": "",
+      "name": "BlueOutsideIcon",
+      "persistentUuid": "87dec570-75d2-4f55-a715-ecb0940e8c95",
+      "width": 0,
+      "x": 1964,
+      "y": 171,
+      "zOrder": 5,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -162,7 +194,10 @@
         },
         {
           "name": "StarShipMovement",
-          "type": "StarShip::StarShipMovement"
+          "type": "StarShip::StarShipMovement",
+          "VelocityX": 10,
+          "VelocityY": 10,
+          "MaxVelocity": 800
         },
         {
           "name": "Tween",
@@ -311,7 +346,10 @@
         },
         {
           "name": "StarShipMovement",
-          "type": "StarShip::StarShipMovement"
+          "type": "StarShip::StarShipMovement",
+          "VelocityX": 10,
+          "VelocityY": 10,
+          "MaxVelocity": 800
         },
         {
           "name": "Tween",
@@ -554,6 +592,141 @@
         "characterSize": 62,
         "color": "255;255;255"
       }
+    },
+    {
+      "adaptCollisionMaskAutomatically": true,
+      "assetStoreId": "",
+      "name": "RedOutsideIcon",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "effects": [],
+      "behaviors": [
+        {
+          "name": "OutsideScreenWarning",
+          "type": "StarShip::OutsideScreenWarning",
+          "Is_icon_initially_visible": false,
+          "padding": 32
+        }
+      ],
+      "animations": [
+        {
+          "name": "RedOutside",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "metadata": "{\"pskl\":{}}",
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": true,
+                  "image": "RedOutside",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": [
+                    [
+                      {
+                        "x": 7,
+                        "y": 16
+                      },
+                      {
+                        "x": 60,
+                        "y": 16
+                      },
+                      {
+                        "x": 60,
+                        "y": 50
+                      },
+                      {
+                        "x": 7,
+                        "y": 50
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "adaptCollisionMaskAutomatically": true,
+      "assetStoreId": "",
+      "name": "BlueOutsideIcon",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "effects": [],
+      "behaviors": [
+        {
+          "name": "OutsideScreenWarning",
+          "type": "StarShip::OutsideScreenWarning",
+          "Is_icon_initially_visible": false
+        }
+      ],
+      "animations": [
+        {
+          "name": "BlueOutside",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "metadata": "{\"pskl\":{}}",
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": true,
+                  "image": "BlueOutside",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": [
+                    [
+                      {
+                        "x": 7,
+                        "y": 16
+                      },
+                      {
+                        "x": 60,
+                        "y": 16
+                      },
+                      {
+                        "x": 60,
+                        "y": 50
+                      },
+                      {
+                        "x": 7,
+                        "y": 50
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "objectsFolderStructure": {
@@ -573,6 +746,12 @@
       },
       {
         "objectName": "BlueLaser"
+      },
+      {
+        "objectName": "RedOutsideIcon"
+      },
+      {
+        "objectName": "BlueOutsideIcon"
       }
     ]
   },
@@ -776,14 +955,21 @@
                 "Player1Ship.ProjectileSpeed",
                 ""
               ]
-            },
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
             {
               "type": {
-                "value": "StarShip::StarShipMovement::Function"
+                "value": "StarShip::OutsideScreenWarning::Follow"
               },
               "parameters": [
+                "RedOutsideIcon",
+                "OutsideScreenWarning",
                 "Player1Ship",
-                "StarShipMovement",
                 ""
               ]
             }
@@ -948,6 +1134,23 @@
           ]
         },
         {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "StarShip::OutsideScreenWarning::Follow"
+              },
+              "parameters": [
+                "BlueOutsideIcon",
+                "OutsideScreenWarning",
+                "Player2Ship",
+                ""
+              ]
+            }
+          ]
+        },
+        {
           "type": "BuiltinCommonInstructions::Comment",
           "color": {
             "b": 109,
@@ -957,7 +1160,7 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "Change direction if any of the players cross each other"
+          "comment": "Change direction if any of the players cross each other (if thery are all alive)\n"
         },
         {
           "type": "BuiltinCommonInstructions::Standard",
@@ -1609,6 +1812,10 @@
     {
       "name": "Opacity",
       "type": "OpacityCapability::OpacityBehavior"
+    },
+    {
+      "name": "OutsideScreenWarning",
+      "type": "StarShip::OutsideScreenWarning"
     },
     {
       "name": "Resizable",
