@@ -174,6 +174,19 @@
         "name": "BlueOutside",
         "smoothed": false,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "assets/Explosion1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Explosion1.png",
+        "smoothed": false,
+        "userAdded": false,
+        "origin": {
+          "identifier": "https://asset-resources.gdevelop.io/public-resources/Particles/PixiJS/c693a024a868728da3e9e91c9d23513306582bda6ba10191afc24d6c5667dd5e_Explosion1.png",
+          "name": "Explosion1.png"
+        }
       }
     ],
     "resourceFolders": []
