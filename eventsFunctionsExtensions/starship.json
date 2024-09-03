@@ -309,7 +309,7 @@
       "sharedPropertyDescriptors": []
     },
     {
-      "description": "let a sprite follow an object but it's constrained to the screen width and height, it's invisible if the object is not outside the screen",
+      "description": "let's a sprite follow an object but it's constrained to the screen width and height, it's invisible if the object is not outside the screen",
       "fullName": "Outside Screen Orbit",
       "name": "OutsideScreenWarning",
       "objectType": "Sprite",
@@ -320,6 +320,18 @@
           "name": "Follow",
           "sentence": "_PARAM0_ follow _PARAM2_",
           "events": [
+            {
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "Move the object to the target center point"
+            },
             {
               "type": "BuiltinCommonInstructions::Standard",
               "conditions": [],
@@ -348,7 +360,7 @@
                 "textG": 0,
                 "textR": 0
               },
-              "comment": "If target it's outside the screen make it appear\n"
+              "comment": "If target it's outside the screen make it appear"
             },
             {
               "type": "BuiltinCommonInstructions::Standard",
@@ -397,6 +409,16 @@
                         "Target",
                         "<",
                         "SceneWindowHeight()"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "inverted": true,
+                        "value": "StarShip::OutsideScreenWarning::PropertyIs_icon_initially_visible"
+                      },
+                      "parameters": [
+                        "Object",
+                        "Behavior"
                       ]
                     }
                   ]

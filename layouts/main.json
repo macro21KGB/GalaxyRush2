@@ -18,7 +18,7 @@
     "gridColor": 10401023,
     "gridAlpha": 0.8,
     "snap": false,
-    "zoomFactor": 0.3768772036750876,
+    "zoomFactor": 0.7562477198107318,
     "windowMask": false
   },
   "objectsGroups": [
@@ -100,7 +100,7 @@
       "customSize": false,
       "height": 0,
       "keepRatio": true,
-      "layer": "",
+      "layer": "UI",
       "name": "RedOutsideIcon",
       "persistentUuid": "c21dce89-579e-4d27-9170-2f6a45fdcecd",
       "width": 0,
@@ -116,13 +116,45 @@
       "customSize": false,
       "height": 0,
       "keepRatio": true,
-      "layer": "",
+      "layer": "UI",
       "name": "BlueOutsideIcon",
       "persistentUuid": "87dec570-75d2-4f55-a715-ecb0940e8c95",
       "width": 0,
       "x": 1964,
       "y": 171,
       "zOrder": 5,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "keepRatio": true,
+      "layer": "",
+      "name": "RedAmmoCounter",
+      "persistentUuid": "885f6554-ac25-45ad-b57d-09751826516c",
+      "width": 0,
+      "x": 34,
+      "y": 396,
+      "zOrder": 11,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "keepRatio": true,
+      "layer": "",
+      "name": "BlueAmmoCounter",
+      "persistentUuid": "165c3158-bd0b-4442-9d32-5c160c323ba6",
+      "width": 0,
+      "x": 1736,
+      "y": 366,
+      "zOrder": 12,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -141,6 +173,12 @@
           "name": "ProjectileSpeed",
           "type": "number",
           "value": 400
+        },
+        {
+          "folded": true,
+          "name": "AmmoCounter",
+          "type": "number",
+          "value": 6
         }
       ],
       "effects": [],
@@ -148,23 +186,23 @@
         {
           "name": "FireBullet",
           "type": "FireBullet::FireBullet",
-          "FireCooldown": 0.1,
+          "FireCooldown": 0.3,
           "HasJustFired": false,
           "RotateBullet": true,
-          "FiringArc": 45,
+          "FiringArc": 0,
           "BulletQuantity": 1,
           "AngleVariance": 0,
           "BulletSpeedVariance": 0,
           "AmmoQuantity": 0,
-          "ShotsPerReload": 0,
+          "ShotsPerReload": 6,
           "ReloadDuration": 1,
-          "MaxAmmo": 0,
+          "MaxAmmo": 6,
           "ShotsBeforeNextReload": 0,
           "TotalShotsFired": 0,
           "TotalBulletsCreated": 0,
-          "StartingAmmo": 0,
+          "StartingAmmo": 6,
           "TotalReloadsCompleted": 0,
-          "UnlimitedAmmo": true,
+          "UnlimitedAmmo": false,
           "ReloadInProgress": false,
           "HeatIncreasePerShot": 0,
           "HeatLevel": 0,
@@ -293,6 +331,12 @@
           "name": "ProjectileSpeed",
           "type": "number",
           "value": 400
+        },
+        {
+          "folded": true,
+          "name": "AmmoCounter",
+          "type": "number",
+          "value": 6
         }
       ],
       "effects": [],
@@ -303,18 +347,18 @@
           "FireCooldown": 0.1,
           "HasJustFired": false,
           "RotateBullet": true,
-          "FiringArc": 45,
+          "FiringArc": 0,
           "BulletQuantity": 1,
           "AngleVariance": 0,
           "BulletSpeedVariance": 0,
           "AmmoQuantity": 0,
-          "ShotsPerReload": 0,
+          "ShotsPerReload": 6,
           "ReloadDuration": 1,
-          "MaxAmmo": 0,
+          "MaxAmmo": 6,
           "ShotsBeforeNextReload": 0,
           "TotalShotsFired": 0,
           "TotalBulletsCreated": 0,
-          "StartingAmmo": 0,
+          "StartingAmmo": 6,
           "TotalReloadsCompleted": 0,
           "UnlimitedAmmo": true,
           "ReloadInProgress": false,
@@ -783,6 +827,168 @@
       "variables": [],
       "effects": [],
       "behaviors": []
+    },
+    {
+      "areaMaxX": 64,
+      "areaMaxY": 64,
+      "areaMaxZ": 64,
+      "areaMinX": 0,
+      "areaMinY": 0,
+      "areaMinZ": 0,
+      "assetStoreId": "c807d51d4bab0016401aef4d64d10d137f5ac8738ffa15865e1bc81435b9720b",
+      "name": "RedAmmoCounter",
+      "type": "TiledUnitsBar::TiledUnitsBar",
+      "variables": [],
+      "effects": [],
+      "behaviors": [
+        {
+          "name": "Sticker",
+          "type": "Sticker::Sticker",
+          "OnlyFollowPosition": true,
+          "IsDestroyedWithParent": true
+        }
+      ],
+      "content": {
+        "UnitWidth": 32,
+        "HideBackground": true,
+        "ShowBackground": false,
+        "MaxValue": 6,
+        "InitialValue": 6
+      },
+      "childrenContent": {
+        "Background": {
+          "bottomMargin": 0,
+          "height": 32,
+          "leftMargin": 0,
+          "rightMargin": 0,
+          "texture": "EmptyAmmo",
+          "tiled": false,
+          "topMargin": 0,
+          "width": 32
+        },
+        "Bar": {
+          "height": 32,
+          "texture": "EmptyAmmo",
+          "width": 32
+        },
+        "FillBar": {
+          "height": 32,
+          "texture": "AmmoCounterTile",
+          "width": 32
+        }
+      },
+      "instances": [],
+      "layers": [
+        {
+          "ambientLightColorB": 200,
+          "ambientLightColorG": 200,
+          "ambientLightColorR": 200,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        }
+      ]
+    },
+    {
+      "areaMaxX": 64,
+      "areaMaxY": 64,
+      "areaMaxZ": 64,
+      "areaMinX": 0,
+      "areaMinY": 0,
+      "areaMinZ": 0,
+      "assetStoreId": "c807d51d4bab0016401aef4d64d10d137f5ac8738ffa15865e1bc81435b9720b",
+      "name": "BlueAmmoCounter",
+      "type": "TiledUnitsBar::TiledUnitsBar",
+      "variables": [],
+      "effects": [],
+      "behaviors": [
+        {
+          "name": "Sticker",
+          "type": "Sticker::Sticker",
+          "OnlyFollowPosition": true,
+          "IsDestroyedWithParent": true
+        }
+      ],
+      "content": {
+        "UnitWidth": 32,
+        "HideBackground": true,
+        "ShowBackground": false,
+        "MaxValue": 6,
+        "InitialValue": 6
+      },
+      "childrenContent": {
+        "Background": {
+          "bottomMargin": 0,
+          "height": 32,
+          "leftMargin": 0,
+          "rightMargin": 0,
+          "texture": "EmptyAmmo",
+          "tiled": false,
+          "topMargin": 0,
+          "width": 32
+        },
+        "Bar": {
+          "height": 32,
+          "texture": "EmptyAmmo",
+          "width": 32
+        },
+        "FillBar": {
+          "height": 32,
+          "texture": "AmmoCounterTileBlue",
+          "width": 32
+        }
+      },
+      "instances": [],
+      "layers": [
+        {
+          "ambientLightColorB": 200,
+          "ambientLightColorG": 200,
+          "ambientLightColorR": 200,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        }
+      ]
     }
   ],
   "objectsFolderStructure": {
@@ -824,44 +1030,74 @@
       },
       {
         "objectName": "BlueOutsideIcon"
+      },
+      {
+        "objectName": "RedAmmoCounter"
+      },
+      {
+        "objectName": "BlueAmmoCounter"
       }
     ]
   },
   "events": [
     {
-      "type": "BuiltinCommonInstructions::Standard",
-      "conditions": [
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "name": "At the Beginning",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
         {
-          "type": {
-            "value": "DepartScene"
-          },
-          "parameters": [
-            ""
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Cache"
+              },
+              "parameters": [
+                "WinnerText"
+              ]
+            },
+            {
+              "type": {
+                "value": "MettreXY"
+              },
+              "parameters": [
+                "WinnerText",
+                "=",
+                "SceneWindowWidth() / 2 - WinnerText.Width() / 2",
+                "=",
+                "SceneWindowHeight() / 2 - WinnerText.Height() / 2"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlayMusic"
+              },
+              "parameters": [
+                "",
+                "audio.mp3",
+                "yes",
+                "50",
+                ""
+              ]
+            }
           ]
         }
       ],
-      "actions": [
-        {
-          "type": {
-            "value": "Cache"
-          },
-          "parameters": [
-            "WinnerText"
-          ]
-        },
-        {
-          "type": {
-            "value": "MettreXY"
-          },
-          "parameters": [
-            "WinnerText",
-            "=",
-            "SceneWindowWidth() / 2 - WinnerText.Width() / 2",
-            "=",
-            "SceneWindowHeight() / 2 - WinnerText.Height() / 2"
-          ]
-        }
-      ]
+      "parameters": []
     },
     {
       "colorB": 228,
@@ -869,7 +1105,7 @@
       "colorR": 74,
       "creationTime": 0,
       "folded": true,
-      "name": "Player Controls",
+      "name": "Player Movement Controls",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
       "events": [
@@ -988,44 +1224,6 @@
                 "Player1Ship",
                 "StarShipMovement",
                 "\"right\"",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "KeyPressed"
-              },
-              "parameters": [
-                "",
-                "Space"
-              ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "FireBullet::FireBullet::FireTowardPosition"
-              },
-              "parameters": [
-                "Player1Ship",
-                "FireBullet",
-                "Player1Ship.PointX(\"Fire\")",
-                "Player1Ship.PointY(\"Fire\")",
-                "RedLaser",
-                "Player2Ship.PointX(\"Center\")",
-                "Player1Ship.PointY(\"Fire\")",
-                "Player1Ship.ProjectileSpeed",
                 ""
               ]
             }
@@ -1209,44 +1407,6 @@
               },
               "parameters": [
                 "",
-                "p"
-              ]
-            },
-            {
-              "type": {
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "value": "FireBullet::FireBullet::FireTowardPosition"
-              },
-              "parameters": [
-                "Player2Ship",
-                "FireBullet",
-                "Player2Ship.PointX(\"Fire\")",
-                "Player2Ship.PointY(\"Fire\")",
-                "BlueLaser",
-                "Player1Ship.PointX(\"Center\")",
-                "Player2Ship.PointY(\"Fire\")",
-                "Player2Ship.ProjectileSpeed",
-                ""
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "KeyPressed"
-              },
-              "parameters": [
-                "",
                 "o"
               ]
             },
@@ -1410,6 +1570,207 @@
                     "no"
                   ]
                 }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "name": "Ammo Counter",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player 1 Ammo counter"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Sticker::Sticker::Stick"
+              },
+              "parameters": [
+                "RedAmmoCounter",
+                "Sticker",
+                "Player1Ship",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Sticker::Sticker::Stick"
+              },
+              "parameters": [
+                "BlueAmmoCounter",
+                "Sticker",
+                "Player2Ship",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "TiledUnitsBar::TiledUnitsBar::SetValue"
+              },
+              "parameters": [
+                "RedAmmoCounter",
+                "=",
+                "Player1Ship.FireBullet::AmmoQuantity()",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "TiledUnitsBar::TiledUnitsBar::SetValue"
+              },
+              "parameters": [
+                "BlueAmmoCounter",
+                "=",
+                "Player2Ship.FireBullet::AmmoQuantity()",
+                ""
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "name": "Player Shooting",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player 1 Shooting"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "Space"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FireBullet::FireBullet::FireTowardPosition"
+              },
+              "parameters": [
+                "Player1Ship",
+                "FireBullet",
+                "Player1Ship.PointX(\"Fire\")",
+                "Player1Ship.PointY(\"Fire\")",
+                "RedLaser",
+                "Player2Ship.PointX(\"Center\")",
+                "Player1Ship.PointY(\"Fire\")",
+                "Player1Ship.ProjectileSpeed",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player 2 Shooting"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "p"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FireBullet::FireBullet::FireTowardPosition"
+              },
+              "parameters": [
+                "Player2Ship",
+                "FireBullet",
+                "Player2Ship.PointX(\"Fire\")",
+                "Player2Ship.PointY(\"Fire\")",
+                "BlueLaser",
+                "Player1Ship.PointX(\"Center\")",
+                "Player2Ship.PointY(\"Fire\")",
+                "Player2Ship.ProjectileSpeed",
+                ""
               ]
             }
           ]
@@ -1935,6 +2296,7 @@
       "colorG": 176,
       "colorR": 74,
       "creationTime": 0,
+      "folded": true,
       "name": "Manage Healths",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -2063,6 +2425,39 @@
           "booleanParameters": {}
         }
       ]
+    },
+    {
+      "ambientLightColorB": 200,
+      "ambientLightColorG": 200,
+      "ambientLightColorR": 200,
+      "camera3DFarPlaneDistance": 10000,
+      "camera3DFieldOfView": 45,
+      "camera3DNearPlaneDistance": 3,
+      "cameraType": "",
+      "followBaseLayerCamera": false,
+      "isLightingLayer": false,
+      "isLocked": false,
+      "name": "UI",
+      "renderingType": "",
+      "visibility": true,
+      "cameras": [],
+      "effects": [
+        {
+          "effectType": "Scene3D::HemisphereLight",
+          "name": "3D Light",
+          "doubleParameters": {
+            "elevation": 45,
+            "intensity": 1,
+            "rotation": 0
+          },
+          "stringParameters": {
+            "groundColor": "64;64;64",
+            "skyColor": "255;255;255",
+            "top": "Y-"
+          },
+          "booleanParameters": {}
+        }
+      ]
     }
   ],
   "behaviorsSharedData": [
@@ -2106,6 +2501,10 @@
       "name": "StarShipMovement",
       "type": "StarShip::StarShipMovement",
       "Velocity": 10
+    },
+    {
+      "name": "Sticker",
+      "type": "Sticker::Sticker"
     },
     {
       "name": "Text",
