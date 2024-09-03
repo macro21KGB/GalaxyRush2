@@ -241,10 +241,10 @@
                     "y": 0
                   },
                   "centerPoint": {
-                    "automatic": true,
+                    "automatic": false,
                     "name": "centre",
-                    "x": 0,
-                    "y": 0
+                    "x": 43.5,
+                    "y": 49
                   },
                   "customCollisionMask": [
                     [
@@ -393,10 +393,10 @@
                     "y": 0
                   },
                   "centerPoint": {
-                    "automatic": true,
+                    "automatic": false,
                     "name": "centre",
-                    "x": 0,
-                    "y": 0
+                    "x": 59.5,
+                    "y": 49
                   },
                   "customCollisionMask": [
                     [
@@ -1422,6 +1422,7 @@
       "colorG": 176,
       "colorR": 74,
       "creationTime": 0,
+      "folded": true,
       "name": "Check Collisions",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -1466,6 +1467,26 @@
                 "",
                 "",
                 ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Create"
+              },
+              "parameters": [
+                "",
+                "Explosion1",
+                "Player1Ship.X()",
+                "Player1Ship.Y()",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "ParticleSystem::StartEmission"
+              },
+              "parameters": [
+                "Explosion1"
               ]
             }
           ]
@@ -1563,15 +1584,6 @@
             },
             {
               "type": {
-                "value": "Delete"
-              },
-              "parameters": [
-                "BlueLaser",
-                ""
-              ]
-            },
-            {
-              "type": {
                 "value": "Create"
               },
               "parameters": [
@@ -1579,6 +1591,15 @@
                 "Explosion1",
                 "BlueLaser.X()",
                 "BlueLaser.Y()",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Delete"
+              },
+              "parameters": [
+                "BlueLaser",
                 ""
               ]
             },
@@ -1655,42 +1676,59 @@
       "type": "BuiltinCommonInstructions::Group",
       "events": [
         {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Draws"
+        },
+        {
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
               "type": {
-                "value": "BuiltinCommonInstructions::Or"
+                "value": "Health::Health::IsDead"
               },
-              "parameters": [],
-              "subInstructions": [
-                {
-                  "type": {
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player1Ship",
-                    "Health",
-                    "<=",
-                    "0",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player2Ship",
-                    "Health",
-                    "<=",
-                    "0",
-                    ""
-                  ]
-                }
+              "parameters": [
+                "Player1Ship",
+                "Health",
+                ""
               ]
+            },
+            {
+              "type": {
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "Player2Ship",
+                "Health",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
             }
           ],
           "actions": [
+            {
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+              },
+              "parameters": [
+                "WinnerText",
+                "Text",
+                "=",
+                "\"Draws\""
+              ]
+            },
             {
               "type": {
                 "value": "Montre"
@@ -1709,179 +1747,154 @@
                 "\"ResetTimer\""
               ]
             }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player 1 is dead"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "Player1Ship",
+                "Health",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "Player2Ship",
+                "Health",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
           ],
-          "events": [
+          "actions": [
             {
-              "type": "BuiltinCommonInstructions::Comment",
-              "color": {
-                "b": 109,
-                "g": 230,
-                "r": 255,
-                "textB": 0,
-                "textG": 0,
-                "textR": 0
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
               },
-              "comment": "Draw"
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player1Ship",
-                    "Health",
-                    "<=",
-                    "0",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player2Ship",
-                    "Health",
-                    "<=",
-                    "0",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
-                  },
-                  "parameters": [
-                    "WinnerText",
-                    "Text",
-                    "=",
-                    "\"Draw\""
-                  ]
-                }
+              "parameters": [
+                "WinnerText",
+                "Text",
+                "=",
+                "\"Player2\nWins\""
               ]
             },
             {
-              "type": "BuiltinCommonInstructions::Comment",
-              "color": {
-                "b": 109,
-                "g": 230,
-                "r": 255,
-                "textB": 0,
-                "textG": 0,
-                "textR": 0
+              "type": {
+                "value": "Montre"
               },
-              "comment": "Player 1 Wins"
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player1Ship",
-                    "Health",
-                    ">",
-                    "0",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player2Ship",
-                    "Health",
-                    ">",
-                    "0",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
-                  },
-                  "parameters": [
-                    "WinnerText",
-                    "Text",
-                    "=",
-                    "\"Player1\nWins\""
-                  ]
-                }
+              "parameters": [
+                "WinnerText",
+                ""
               ]
             },
             {
-              "type": "BuiltinCommonInstructions::Comment",
-              "color": {
-                "b": 109,
-                "g": 230,
-                "r": 255,
-                "textB": 0,
-                "textG": 0,
-                "textR": 0
+              "type": {
+                "value": "ResetTimer"
               },
-              "comment": "Player 2 Wins"
+              "parameters": [
+                "",
+                "\"ResetTimer\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Player 2 is dead"
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "Player2Ship",
+                "Health",
+                ""
+              ]
             },
             {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player2Ship",
-                    "Health",
-                    ">",
-                    "0",
-                    ""
-                  ]
-                },
-                {
-                  "type": {
-                    "inverted": true,
-                    "value": "Health::Health::Health"
-                  },
-                  "parameters": [
-                    "Player1Ship",
-                    "Health",
-                    ">",
-                    "0",
-                    ""
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "TextContainerCapability::TextContainerBehavior::SetValue"
-                  },
-                  "parameters": [
-                    "WinnerText",
-                    "Text",
-                    "=",
-                    "\"Player2\nWins\""
-                  ]
-                },
-                {
-                  "type": {
-                    "value": "TextObject::Text::SetOutlineColor"
-                  },
-                  "parameters": [
-                    "WinnerText",
-                    "\"44;149;236\""
-                  ]
-                }
+              "type": {
+                "inverted": true,
+                "value": "Health::Health::IsDead"
+              },
+              "parameters": [
+                "Player1Ship",
+                "Health",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "TextContainerCapability::TextContainerBehavior::SetValue"
+              },
+              "parameters": [
+                "WinnerText",
+                "Text",
+                "=",
+                "\"Player1\nWins\""
+              ]
+            },
+            {
+              "type": {
+                "value": "Montre"
+              },
+              "parameters": [
+                "WinnerText",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"ResetTimer\""
               ]
             }
           ]
@@ -1951,6 +1964,16 @@
                 "Player1Ship",
                 ""
               ]
+            },
+            {
+              "type": {
+                "value": "DebuggerTools::ConsoleLog"
+              },
+              "parameters": [
+                "ToString(Player1Ship.Health::Health())",
+                "\"info\"",
+                ""
+              ]
             }
           ]
         },
@@ -1977,6 +2000,16 @@
               },
               "parameters": [
                 "Player2Ship",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "DebuggerTools::ConsoleLog"
+              },
+              "parameters": [
+                "ToString(Player2Ship.Health::Health())",
+                "\"info\"",
                 ""
               ]
             }
