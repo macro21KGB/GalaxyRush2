@@ -27,7 +27,7 @@
     "windowHeight": 1080,
     "latestCompilationDirectory": "",
     "maxFPS": 60,
-    "minFPS": 29,
+    "minFPS": 30,
     "verticalSync": false,
     "platformSpecificAssets": {},
     "loadingScreen": {
